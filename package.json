@@ -1,0 +1,22 @@
+{
+  "name": "remindbot",
+  "version": "1.0.0",
+  "description": "A Facebook Messenger Chatbot starter template that uses Wit.AI",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Rome",
+  "license": "ISC",
+  "engines": {
+    "node": "8.0.0"
+  },
+  "dependencies": {
+    "agenda": "^0.9.1",
+    "exact": "^0.8.0",
+    "i": "^0.3.5",
+    "node-wit": "^4.0.0",
+    "pg": "^6.2.4",
+    "request": "^2.74.0",
+    "restify": "^4.1.1"
+  }
+}
