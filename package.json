@@ -1,11 +1,11 @@
 {
-  "name": "remindobot",
+  "name": "remindbot",
   "version": "1.0.0",
   "description": "A Facebook Messenger Chatbot starter template that uses Wit.AI",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Sachin Bhatnagar <mailme@sachinbhatnagar.com> (http://sachinbhatnagar.com)",
+  "author": "Romedorado",
   "license": "ISC",
   "engines": {
     "node": "6.2.1"
