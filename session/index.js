@@ -1,8 +1,4 @@
 'use strict';
-
-
-module.exports = session;
-
 const {findById} = require('../utils');
 const crypto = require('crypto');
 const sessionStore = new Map();
@@ -39,4 +35,3 @@ const session = {
 }
 
 module.exports = session;
-
