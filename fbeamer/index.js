@@ -22,8 +22,13 @@ class FBeamer {
 		// and if req.query.hub.verify_token is the same as this.VERIFY_TOKEN
 		// then send back an HTTP status 200 and req.query.hub.challenge
 		let {
+<<<<<<< HEAD
 			mode, 
 			verify_token, 
+=======
+			mode,
+			verify_token,
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 			challenge
 		} = req.query.hub;
 
@@ -46,7 +51,11 @@ class FBeamer {
 					try {
 						if(hash !== signature.split("=")[1]) {
 							throw new Error("Invalid Signature");
+<<<<<<< HEAD
 						} 
+=======
+						}
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 					} catch(e) {
 							res.send(500, e);
 						}
@@ -54,7 +63,11 @@ class FBeamer {
 			} catch(e) {
 				res.send(500, e);
 			}
+<<<<<<< HEAD
 		} 
+=======
+		}
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 
 		return next();
 
@@ -76,6 +89,7 @@ class FBeamer {
 		});
 	}
 
+<<<<<<< HEAD
 getProfile(id){
 	return new Promise((resolve, reject)=>{
 		request({
@@ -94,6 +108,25 @@ getProfile(id){
 		});
 	});
 }
+=======
+	getProfile(id) {
+		return new Promise((resolve, reject) => {
+			request({
+				uri: `https://graph.facebook.com/v2.7/${id}`,
+				qs: {
+					access_token: this.PAGE_ACCESS_TOKEN
+				},
+				method: 'GET'
+			}, (error, response, body) => {
+				if(!error & response.statusCode === 200) {
+					resolve(JSON.parse(body));
+				} else {
+					reject(error);
+				}
+			});
+		});
+	}
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 
 	incoming(req, res, cb) {
 		// Extract the body of the POST request
@@ -107,9 +140,15 @@ getProfile(id){
 						sender: msgEvent.sender.id,
 						timeOfMessage: msgEvent.timestamp,
 						message: msgEvent.message || undefined,
+<<<<<<< HEAD
 						postback: msgEvent.postback || undefined 
 					}
 					
+=======
+						postback: msgEvent.postback || undefined
+					}
+
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 					cb(messageObj);
 				});
 			});
@@ -139,6 +178,31 @@ getProfile(id){
 		});
 	}
 
+<<<<<<< HEAD
+=======
+	// Show Persistent Menu
+	showPersistent(payload) {
+		let obj = {
+			setting_type: "call_to_actions",
+			thread_state: "existing_thread",
+			call_to_actions: payload
+		}
+
+		request({
+			uri: 'https://graph.facebook.com/v2.6/me/thread_settings',
+			qs: {
+				access_token: this.PAGE_ACCESS_TOKEN
+			},
+			method: 'POST',
+			json: obj
+		}, (error, response) => {
+			if(error) {
+				console.log(error);
+			}
+		});
+	}
+
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 	// Send a text message
 	txt(id, text) {
 		let obj = {
@@ -173,8 +237,14 @@ getProfile(id){
 		this.sendMessage(obj)
 			.catch(error => console.log(error));
 	}
+<<<<<<< HEAD
 //A button
 	btn(id, data){
+=======
+
+	// A button
+	btn(id, data) {
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 		let obj = {
 			recipient: {
 				id
@@ -192,9 +262,33 @@ getProfile(id){
 		}
 
 		this.sendMessage(obj)
+<<<<<<< HEAD
 		.catch(error => console.log(error));
 	}
 
 }	
 
 module.exports = FBeamer;
+=======
+			.catch(error => console.log(error));
+	}
+
+	// Quick Replies
+	quick(id, data) {
+		let obj = {
+			recipient: {
+				id
+			},
+			message: {
+				text: data.text,
+				quick_replies: data.buttons
+			}
+		}
+
+		this.sendMessage(obj)
+			.catch(error => console.log(error));
+	}
+}
+
+module.exports = FBeamer;
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa

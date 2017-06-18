@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node server.js"
   },
+<<<<<<< HEAD
   "author": "Rome",
   "license": "ISC",
   "engines": {
@@ -18,5 +19,17 @@
     "pg": "^6.2.4",
     "request": "^2.74.0",
     "restify": "^4.1.1"
+=======
+  "author": "Romedorado",
+  "license": "ISC",
+  "engines": {
+    "node": "6.2.1"
+  },
+  "dependencies": {
+    "agenda": "0.8.1",
+    "node-wit": "4.0.0",
+    "request": "2.74.0",
+    "restify": "4.1.1"
+>>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
   }
 }
