@@ -120,13 +120,6 @@ if(postback){
 });
 
 // Persistent Menu
-f.showPersistent([
-	{
-		type: "postback",
-		title: "My Reminders",
-		payload: "menu:Show my reminders"
-	}
-]);
 
 
 // Subscribe
