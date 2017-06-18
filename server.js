@@ -3,11 +3,6 @@ const config = require('./config');
 // create an API server
 const Restify = require('restify');
 const server = Restify.createServer({
-<<<<<<< HEAD
-	name: 'remindo'
-=======
-	name: 'remindO'
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 });
 const PORT = process.env.PORT || 3000;
 
@@ -19,22 +14,13 @@ server.use(Restify.jsonp());
 server.use(Restify.bodyParser());
 server.use((req, res, next) => f.verifySignature(req, res, next));
 
-<<<<<<< HEAD
-//Agenda
-const agenda = require('./agenda')(f);
 
-//session
-const session = require('./session');
-//WIT Actions
-const actions = require('./actions')(session, f, agenda);//invoke to pass the sesssion and f. to inject dependencies to any module
-=======
 // Agenda
 const agenda = require('./agenda')(f);
 // Session
 const session = require('./session');
 // WIT Actions
 const actions = require('./actions')(session, f, agenda);
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 
 // WIT.AI
 const Wit = require('node-wit').Wit;
@@ -43,21 +29,12 @@ const wit = new Wit({
 	actions
 });
 
-<<<<<<< HEAD
-//database
-const pg = require('pg');
-
-pg.defaults.ssl = true;
-
-=======
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
-// Register the webhooks
 server.get('/', (req, res, next) => {
 	f.registerHook(req, res);
 	return next();
 });
 
-<<<<<<< HEAD
+
 /**pg.connect(process.env.DATABASE_URL, function(err, client){
 	if (err) throw err;
 	console.log("connected to postgre");
@@ -78,11 +55,9 @@ server.get('/', (req, res, next) => {
 	})
 })**/
 
+
 agenda.on('ready', () => {
 
-=======
-agenda.on('ready', () => {
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
 	// Handle incoming
 	server.post('/', (req, res, next) => {
 		f.incoming(req, res, msg => {
@@ -92,7 +67,7 @@ agenda.on('ready', () => {
 				message
 			} = msg;
 
-<<<<<<< HEAD
+
 if(postback){
 	const {
 		schedule,
@@ -105,19 +80,8 @@ if(postback){
 	});
 }
 
-			if(message.text) {
-				console.log("connected");
-				// Process the message here
-				let sessionId = session.init(sender);
-				let {context} = session.get(sessionId);
-				//Run WIT actions (converse API)
-				wit.runActions(sessionId, message.text, context).then
-				(ctx =>{
-					//delete sessionId if the convo is over 				
-					ctx.jobDone ? session.delete(sessionId) : session.update(sessionId, ctx);
-				})
-				.catch(error => console.log(`Error: ${error}`));
-=======
+			
+
 			if(postback && !postback.payload.includes("menu")) {
 					const {
 						schedule,
@@ -143,18 +107,14 @@ if(postback){
 						ctx.jobDone ? session.delete(sessionId) : session.update(sessionId, ctx);
 					})
 					.catch(error => console.log(`Error: ${error}`));
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
+
 			}
 
 		});
 
 		return next();
 	});
-<<<<<<< HEAD
-	agenda.start();
-});
 
-=======
 
 	agenda.start();
 });
@@ -167,13 +127,9 @@ f.showPersistent([
 		payload: "menu:Show my reminders"
 	}
 ]);
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
+
 
 // Subscribe
 f.subscribe();
 
 server.listen(PORT, () => console.log(`Bot running on port ${PORT}`));
-<<<<<<< HEAD
-
-=======
->>>>>>> 3025b1ad29519fab2e9ca374f3e22bf9cd9f38aa
